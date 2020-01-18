@@ -37,7 +37,12 @@ url:'git@github.com:sharathgoud2016/DemoAppSample.git'
  }  
 stage('Send Email'){
  steps{
-   echo "7 step"
+   emailext (
+    subject: "Job '${env.JOB_NAME} ${env.BUILD_NUMBER}'",
+    body: """<p>Check console output at <a href="${env.BUILD_URL}">${env.JOB_NAME}</a></p>""",
+    to: "sharathgoud2016@gmail.com",
+    from: "sharathgoud2016@gmail.com"
+)
  }  
     }
  }
